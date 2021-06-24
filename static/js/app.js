@@ -16,7 +16,10 @@ d3.json("./static/data/samples.json").then((importedData) => {
   var sampleValues = data.samples.map((row) => row.sample_values); 
   var otuLabels = data.samples.map((row) => row.otu_labels);
 
-  console.log(otuIDs[0]);
+  //console.log(otuIDs[0]);
+
+  //bar chart per individual
+
 
 });
 
