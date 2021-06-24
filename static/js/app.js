@@ -9,7 +9,7 @@ function unpackData(rows, index) {
     });
   }
 
-  var ids = unpack(data.metadata, 0);
+  var ids = unpackData(data.metadata, 0);
   console.log(ids);
 
 
