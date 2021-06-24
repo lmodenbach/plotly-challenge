@@ -3,8 +3,14 @@ d3.json("./static/data/samples.json").then((importedData) => {
     var data = importedData; 
 });
 
-console.log(data);
+function unpackData(rows, index) {
+    return rows.map(function(row) {
+      return row[index];
+    });
+  }
 
+  var ids = unpack(data.metadata, 0);
+  console.log(ids);
 
 
 
