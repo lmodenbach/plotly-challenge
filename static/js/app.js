@@ -2,8 +2,21 @@
 d3.json("./static/data/samples.json").then((importedData) => {
   var data = importedData; 
 
-  var ids = data.metadata.map((row) => row.id);
-  console.log(ids);
+  var participant_ids = data.metadata.map((row) => row.id);
+  //when comparing input from user return index of selected participant_id
+  //get all relevant data by index
+  var ethnicities = data.metadata.map((row) => row.ethnicity);
+  var genders = data.metadata.map((row) => row.gender);
+  var ages = data.metadata.map((row) => row.age);
+  var locations = data.metadata.map((row) => row.location);
+  var bbtypes = data.metadata.map((row) => row.bbtype);
+  var wfrequencies = data.metadata.map((row) => row.wfreq);
+
+  var otuIDs = data.samples.map((row) => row.otu_ids);
+  var sampleValues = data.samples.map((row) => row.sample_values); 
+  var otuLabels = data.samples.map((row) => row.otu_labels);
+
+  console.log(otuLabels[0]);
 
 });
 
