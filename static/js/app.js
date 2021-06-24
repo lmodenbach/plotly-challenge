@@ -9,7 +9,7 @@ function unpackData(rows, index) {
     });
   }
 
-  var ids = unpackData(data.metadata, 0);
+  var ids = data.map((data) => data.metadata.id);
   console.log(ids);
 
 });
