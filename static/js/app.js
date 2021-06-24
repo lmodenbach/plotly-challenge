@@ -1,15 +1,8 @@
 //read in json data from samples.json
 d3.json("./static/data/samples.json").then((importedData) => {
-    var data = importedData; 
+  var data = importedData; 
 
-
-function unpackData(rows, index) {
-    return rows.map(function(row) {
-      return row[index];
-    });
-  }
-
-  var ids = data.map((data) => data.metadata.id);
+  var ids = data.metadata.map((row) => row.id);
   console.log(ids);
 
 });
