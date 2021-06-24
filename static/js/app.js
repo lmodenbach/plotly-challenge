@@ -1,7 +1,7 @@
 //read in json data from samples.json
 d3.json("./static/data/samples.json").then((importedData) => {
     var data = importedData; 
-});
+
 
 function unpackData(rows, index) {
     return rows.map(function(row) {
@@ -12,7 +12,7 @@ function unpackData(rows, index) {
   var ids = unpackData(data.metadata, 0);
   console.log(ids);
 
-
+});
 
 
 
