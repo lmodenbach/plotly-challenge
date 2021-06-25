@@ -4,15 +4,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Human Navel Biodiversity</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="well">
-        <h5>Test Subject ID Number</h5>
-        <select id="selDataset" onchange="optionChanged(this.value)"></select>
-    </div>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="./static/js/app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+          <div class="col-md-12 jumbotron text-center">
+            <h2>Human Navel Biodiversity Dashboard</h2>
+            <p>Use the interactive charts below to explore the dataset</p>
+          </div>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+            Select Participant ID
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="#">HTML</a></li>
+            <li><a href="#">CSS</a></li>
+            <li><a href="#">JavaScript</a></li>
+        </ul>
+    </div>
 </body>
 </html>
