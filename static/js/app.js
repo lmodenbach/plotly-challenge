@@ -2,9 +2,8 @@
 d3.json("./static/data/samples.json").then((importedData) => {
   var data = importedData; 
 
+  //grab all needed elements and place in array variables
   var participant_ids = data.metadata.map((row) => row.id);
-  //when comparing input from user return index of selected participant_id
-  //get all relevant data by index
   var ethnicities = data.metadata.map((row) => row.ethnicity);
   var genders = data.metadata.map((row) => row.gender);
   var ages = data.metadata.map((row) => row.age);
@@ -16,9 +15,27 @@ d3.json("./static/data/samples.json").then((importedData) => {
   var sampleValues = data.samples.map((row) => row.sample_values); 
   var otuLabels = data.samples.map((row) => row.otu_labels);
 
-  //console.log(otuIDs[0]);
+  //populate dropdown menu using d3
+  d3.select(".dropdown-menu").selectAll("ul")
+  .data(participant_ids)
+  .enter()
+  .append("li")
+  .append("a")
+  .text(function(id) {
+    return id;
+  });  
 
-  //bar chart per individual
+var dropdownList = d3.select("#participantSelector");
+dropdownList.on("change", filterViz());
+//console.log(userSelect)
+
+function filterViz() {
+//when comparing input from user return index of selected participant_id
+//get all relevant data by index
+//var userSelect = dropdownList.property("value");
+console.log("triggered");
+
+}
 
 
 });
