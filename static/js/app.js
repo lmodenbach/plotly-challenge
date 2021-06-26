@@ -25,21 +25,24 @@ d3.json("./static/data/samples.json").then((importedData) => {
     return id;
   });
 
-  init();
+  filterViz();
   var dropdownMenu = d3.selectAll("#dropdown");
   dropdownMenu.on("change", filterViz);
   
-  function init() {
-    filterViz();
-  }
-
   function filterViz() {
-  //when comparing input from user return index of selected participant_id
-  //get all relevant data by index
-    d3.event.preventDefault();
+    if (d3.event != null) {
+      d3.event.preventDefault();
+    }
     userSelect = d3.select('#dropdown option:checked').text();
-    console.log(userSelect);
+    selectIndex = participant_ids.map(function (d, i) {
+      if (d === parseInt(userSelect)) {
+        return i;
+      }
+    });
 
+    //get all relevant data by index
+    //render graphics calls
+    
   }
 
 
