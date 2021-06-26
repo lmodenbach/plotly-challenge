@@ -16,26 +16,31 @@ d3.json("./static/data/samples.json").then((importedData) => {
   var otuLabels = data.samples.map((row) => row.otu_labels);
 
   //populate dropdown menu using d3
-  d3.select(".dropdown-menu").selectAll("ul")
+  d3.select("#dropdown")
+  .selectAll("option")
   .data(participant_ids)
   .enter()
-  .append("li")
-  .append("a")
+  .append("option")
   .text(function(id) {
     return id;
-  });  
+  });
 
-var dropdownList = d3.select("#participantSelector");
-dropdownList.on("change", filterViz());
-//console.log(userSelect)
+  init();
+  var dropdownMenu = d3.selectAll("#dropdown");
+  dropdownMenu.on("change", filterViz);
+  
+  function init() {
+    filterViz();
+  }
 
-function filterViz() {
-//when comparing input from user return index of selected participant_id
-//get all relevant data by index
-//var userSelect = dropdownList.property("value");
-console.log("triggered");
+  function filterViz() {
+  //when comparing input from user return index of selected participant_id
+  //get all relevant data by index
+    d3.event.preventDefault();
+    userSelect = d3.select('#dropdown option:checked').text();
+    console.log(userSelect);
 
-}
+  }
 
 
 });
