@@ -132,7 +132,7 @@ d3.json("./static/data/samples.json").then((importedData) => {
           bar: { color: "rgba(174, 202, 176, 0.79)" },
           bgcolor: "rgba(207, 246, 209, 0.79)",
           borderwidth: 2,
-          bordercolor: "black",
+          bordercolor: "rgba(49, 92, 52, 0.79)",
           steps: [
             { range: [0, 1], color: "rgba(22, 130, 121, 1)" },
             { range: [1, 2], color: "rgba(51, 216, 228, 1)" },
@@ -151,7 +151,7 @@ d3.json("./static/data/samples.json").then((importedData) => {
     var gaugeLayout = {
       margin: { t: 25, r: 25, l: 25, b: 25 },
       paper_bgcolor: "rgba(167, 204, 167, 0.5)",
-      font: { color: "black", family: "Arial" }
+      font: { color: "rgba(49, 92, 52, 0.79)", family: "Arial" }
     };
     
     Plotly.newPlot('gauge', gaugeData, gaugeLayout);
