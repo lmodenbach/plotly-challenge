@@ -1,6 +1,6 @@
 //read in json data from samples.json
 d3.json("./static/data/samples.json").then((importedData) => {
-  var data = importedData; 
+  var data = importedData;
 
   //grab all needed elements and place in array variables
   var participant_ids = data.metadata.map((row) => row.id);
@@ -12,33 +12,33 @@ d3.json("./static/data/samples.json").then((importedData) => {
   var wfrequencies = data.metadata.map((row) => row.wfreq);
 
   var otuIDs = data.samples.map((row) => row.otu_ids);
-  var sampleValues = data.samples.map((row) => row.sample_values); 
+  var sampleValues = data.samples.map((row) => row.sample_values);
   var otuLabels = data.samples.map((row) => row.otu_labels);
 
   //populate dropdown menu using d3
   d3.select("#dropdown")
-  .selectAll("option")
-  .data(participant_ids)
-  .enter()
-  .append("option")
-  .text(function(id) {
-    return id;
-  });
+    .selectAll("option")
+    .data(participant_ids)
+    .enter()
+    .append("option")
+    .text(function (id) {
+      return id;
+    });
 
   filterViz();
   var dropdownMenu = d3.selectAll("#dropdown");
   dropdownMenu.on("change", filterViz);
-  
+
   function filterViz() {
     if (d3.event != null) {
       d3.event.preventDefault();
     }
     userSelect = d3.select('#dropdown option:checked').text();
     for (var i = 0; i < participant_ids.length; i++) {
-       if (parseInt(userSelect) === parseInt(participant_ids[i]))
-           var selectIndex = i;
+      if (parseInt(userSelect) === parseInt(participant_ids[i]))
+        var selectIndex = i;
     }
-    
+
     d3.select("#sample-metadata")
       .selectAll("p")
       .remove();
@@ -57,35 +57,59 @@ d3.json("./static/data/samples.json").then((importedData) => {
       .text(`Participant Navel Wash Frequency: ${wfrequencies[selectIndex]}`);
 
 
-  
-
-  //render graphics calls
-  otuIDs[selectIndex] = otuIDs[selectIndex].slice(0, 10);  
-  sampleValues[selectIndex] = sampleValues[selectIndex].slice(0, 10);
-  otuLabels[selectIndex] = otuLabels[selectIndex].slice(0, 10);
-
-  otuIDs[selectIndex] = otuIDs[selectIndex].map(d => "OTU" + String(d));
-
-  var trace = {
-    y: otuIDs[selectIndex],
-    x: sampleValues[selectIndex],
-    text: otuLabels[selectIndex],
-    name: "Top10OTUs",
-    type: "bar",
-    orientation: 'h',
-    marker: {color: "rgb(167, 204, 167)"}
-  };
-
-  var traceData = [trace];
-
-  var layout = {
-    title: "Navel BioDiversity Top 10 OTUs"
-  };
-
-  Plotly.newPlot("bar", traceData, layout);
 
 
-}
+    //render graphics calls
+    otuIDs[selectIndex] = otuIDs[selectIndex].slice(0, 10);
+    sampleValues[selectIndex] = sampleValues[selectIndex].slice(0, 10);
+    otuLabels[selectIndex] = otuLabels[selectIndex].slice(0, 10);
+
+    otuIDs[selectIndex] = otuIDs[selectIndex].map(d => "OTU" + String(d));
+
+    var barTrace = {
+      y: otuIDs[selectIndex],
+      x: sampleValues[selectIndex],
+      text: otuLabels[selectIndex],
+      name: "Top10OTUs",
+      type: "bar",
+      orientation: 'h',
+      marker: { color: "rgb(167, 204, 167)" }
+    };
+
+    var barData = [barTrace];
+
+    var barLayout = {
+      title: "Navel BioDiversity Top 10 OTUs"
+    };
+
+    Plotly.newPlot("bar", barData, barLayout);
+
+    var bubbleTrace = {
+      x: otuIDs[selectIndex],
+      y: sampleValues[selectIndex],
+      text: otuLabels[selectIndex],
+      mode: 'markers',
+      marker: {
+        color: ['rgb(22, 130, 121, 1)','rgba(51, 216, 228, 1)', 'rgba(27, 7, 206, 1)', 'rgba(136, 7, 206, 1)', 
+                'rgba(244, 10, 209, 1)', 'rgba(244, 45, 10, 1)', 'rgba(236, 137, 8, 1)', 'rgba(233, 243, 36, 1)', 
+                'rgba(109, 243, 36, 1)', 'rgba(58, 225, 49, 0.64)'],
+        size: sampleValues[selectIndex]
+      }
+    };
+
+    var bubbleData = [bubbleTrace];
+
+    var bubbleLayout = {
+      title: "Navel BioDiversity Top 10 OTUs",
+      showlegend: true,
+      height: 600,
+      width: 800
+    };
+
+    Plotly.newPlot('bubble', bubbleData, bubbleLayout);
+
+
+  }
 
 });
 
@@ -103,13 +127,13 @@ d3.json("./static/data/samples.json").then((importedData) => {
 
 
 
-  
+
 //     // Slice the first 10 objects for plotting
 //     data = data.slice(0, 10);
-  
+
 //     // Reverse the array due to Plotly's defaults
 //     data = data.reverse();
-  
+
 //     // Trace1 for the Greek Data
 //     var trace1 = {
 //       x: data.map(row => row.greekSearchResults),
@@ -119,10 +143,10 @@ d3.json("./static/data/samples.json").then((importedData) => {
 //       type: "bar",
 //       orientation: "h"
 //     };
-  
+
 //     // data
 //     var chartData = [trace1];
-  
+
 //     // Apply the group bar mode to the layout
 //     var layout = {
 //       title: "Greek gods search results",
@@ -133,7 +157,7 @@ d3.json("./static/data/samples.json").then((importedData) => {
 //         b: 100
 //       }
 //     };
-  
+
 //     // Render the plot to the div tag with id "plot"
 //     Plotly.newPlot("plot", chartData, layout);
 //   });
