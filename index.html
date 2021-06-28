@@ -4,12 +4,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Human Navel Biodiversity</title>
+    <link rel="stylesheet" href="static/css/styles.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="./static/js/app.js"></script>
+    <script src="static/js/app.js"></script>
 </head>
 <body>
     <div class="container">
@@ -20,7 +21,23 @@
           </div>
         </div>
     </div>
-    <p>Participant Selector</p>
-    <select id=dropdown></select>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <span><b>Participant ID Selector</b></span>
+                <select id=dropdown></select>
+            </div> 
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Demographic Information</h3>
+                    </div>
+                    <div id="sample-metadata" class="panel-body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

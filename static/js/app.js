@@ -39,10 +39,25 @@ d3.json("./static/data/samples.json").then((importedData) => {
         return i;
       }
     });
+    //selectIndex = selectIndex[0]
+    console.log(selectIndex);
 
     //get all relevant data by index
     //render graphics calls
-    
+    d3.select("#sample-metadata")
+      .append("p")
+      .text(`Participant Ethnicity: ${ethnicities[selectIndex]}`)
+      .append("p")
+      .text(`Participant Gender: ${genders[selectIndex]}`)
+      .append("p")
+      .text(`Participant Age: ${ages[selectIndex]}`)
+      .append("p")
+      .text(`Participant Location: ${locations[selectIndex]}`)
+      .append("p")
+      .text(`Participant Navel Type: ${bbtypes[selectIndex]}`)
+      .append("p")
+      .text(`Participant Navel Wash Frequency: ${wfrequencies[selectIndex]}`);
+
   }
 
 
