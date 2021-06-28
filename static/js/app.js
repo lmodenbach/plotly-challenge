@@ -70,9 +70,10 @@ d3.json("./static/data/samples.json").then((importedData) => {
     y: otuIDs[selectIndex],
     x: sampleValues[selectIndex],
     text: otuLabels[selectIndex],
-    name: "Top 10 OTUs",
+    name: "Top10OTUs",
     type: "bar",
-    orientation: 'h'
+    orientation: 'h',
+    marker: {color: "rgb(167, 204, 167)"}
   };
 
   var traceData = [trace];
@@ -81,7 +82,8 @@ d3.json("./static/data/samples.json").then((importedData) => {
     title: "Navel BioDiversity Top 10 OTUs"
   };
 
-  Plotly.newPlot("plot", traceData, layout);
+  Plotly.newPlot("bar", traceData, layout);
+
 
 }
 
