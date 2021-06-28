@@ -34,16 +34,14 @@ d3.json("./static/data/samples.json").then((importedData) => {
       d3.event.preventDefault();
     }
     userSelect = d3.select('#dropdown option:checked').text();
-    selectIndex = participant_ids.map(function (d, i) {
-      if (d === parseInt(userSelect)) {
-        return i;
-      }
-    });
-    //selectIndex = selectIndex[0]
-    console.log(selectIndex);
-
-    //get all relevant data by index
-    //render graphics calls
+    for (var i = 0; i < participant_ids.length; i++) {
+       if (parseInt(userSelect) === parseInt(participant_ids[i]))
+           var selectIndex = i;
+    }
+    
+    d3.select("#sample-metadata")
+      .selectAll("p")
+      .remove();
     d3.select("#sample-metadata")
       .append("p")
       .text(`Participant Ethnicity: ${ethnicities[selectIndex]}`)
@@ -58,8 +56,34 @@ d3.json("./static/data/samples.json").then((importedData) => {
       .append("p")
       .text(`Participant Navel Wash Frequency: ${wfrequencies[selectIndex]}`);
 
-  }
 
+  
+
+  //render graphics calls
+  otuIDs[selectIndex] = otuIDs[selectIndex].slice(0, 10);  
+  sampleValues[selectIndex] = sampleValues[selectIndex].slice(0, 10);
+  otuLabels[selectIndex] = otuLabels[selectIndex].slice(0, 10);
+
+  otuIDs[selectIndex] = otuIDs[selectIndex].map(d => "OTU" + String(d));
+
+  var trace = {
+    y: otuIDs[selectIndex],
+    x: sampleValues[selectIndex],
+    text: otuLabels[selectIndex],
+    name: "Top 10 OTUs",
+    type: "bar",
+    orientation: 'h'
+  };
+
+  var traceData = [trace];
+
+  var layout = {
+    title: "Navel BioDiversity Top 10 OTUs"
+  };
+
+  Plotly.newPlot("plot", traceData, layout);
+
+}
 
 });
 
