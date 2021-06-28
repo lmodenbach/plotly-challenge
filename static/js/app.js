@@ -73,16 +73,24 @@ d3.json("./static/data/samples.json").then((importedData) => {
       name: "Top10OTUs",
       type: "bar",
       orientation: 'h',
-      marker: { color: "rgb(167, 204, 167)" }
+      marker: { color: "rgba(173, 244, 92, 0.69)" }
     };
 
     var barData = [barTrace];
 
     var barLayout = {
-      title: "Navel BioDiversity Top 10 OTUs"
+      title: "Navel BioDiversity Top 10 OTUs",
+      xaxis: {title: "OTU ID"},
+      yaxis: {title: "Number of OTUs Present"}
     };
 
     Plotly.newPlot("bar", barData, barLayout);
+
+    otuIDs[selectIndex] = otuIDs[selectIndex].reverse();
+    sampleValues[selectIndex] = sampleValues[selectIndex].reverse(); 
+    otuLabels[selectIndex] = otuLabels[selectIndex].reverse();
+
+    console.log(otuLabels[selectIndex]);
 
     var bubbleTrace = {
       x: otuIDs[selectIndex],
@@ -90,9 +98,9 @@ d3.json("./static/data/samples.json").then((importedData) => {
       text: otuLabels[selectIndex],
       mode: 'markers',
       marker: {
-        color: ['rgb(22, 130, 121, 1)','rgba(51, 216, 228, 1)', 'rgba(27, 7, 206, 1)', 'rgba(136, 7, 206, 1)', 
-                'rgba(244, 10, 209, 1)', 'rgba(244, 45, 10, 1)', 'rgba(236, 137, 8, 1)', 'rgba(233, 243, 36, 1)', 
-                'rgba(109, 243, 36, 1)', 'rgba(58, 225, 49, 0.64)'],
+        color: ['rgba(58, 225, 49, 0.64)', 'rgba(109, 243, 36, 1)', 'rgba(233, 243, 36, 1)', 'rgba(236, 137, 8, 1)', 
+                'rgba(244, 45, 10, 1)', 'rgba(244, 10, 209, 1)', 'rgba(136, 7, 206, 1)', 'rgba(27, 7, 206, 1)', 
+                'rgba(51, 216, 228, 1)', 'rgb(22, 130, 121, 1)'],
         size: sampleValues[selectIndex]
       }
     };
@@ -101,9 +109,11 @@ d3.json("./static/data/samples.json").then((importedData) => {
 
     var bubbleLayout = {
       title: "Navel BioDiversity Top 10 OTUs",
-      showlegend: true,
+      showlegend: false,
       height: 600,
-      width: 800
+      width: 1000,
+      xaxis: {title: "OTU ID"},
+      yaxis: {title: "Number of OTUs Present"}  
     };
 
     Plotly.newPlot('bubble', bubbleData, bubbleLayout);
@@ -113,51 +123,3 @@ d3.json("./static/data/samples.json").then((importedData) => {
 
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//     // Slice the first 10 objects for plotting
-//     data = data.slice(0, 10);
-
-//     // Reverse the array due to Plotly's defaults
-//     data = data.reverse();
-
-//     // Trace1 for the Greek Data
-//     var trace1 = {
-//       x: data.map(row => row.greekSearchResults),
-//       y: data.map(row => row.greekName),
-//       text: data.map(row => row.greekName),
-//       name: "Greek",
-//       type: "bar",
-//       orientation: "h"
-//     };
-
-//     // data
-//     var chartData = [trace1];
-
-//     // Apply the group bar mode to the layout
-//     var layout = {
-//       title: "Greek gods search results",
-//       margin: {
-//         l: 100,
-//         r: 100,
-//         t: 100,
-//         b: 100
-//       }
-//     };
-
-//     // Render the plot to the div tag with id "plot"
-//     Plotly.newPlot("plot", chartData, layout);
-//   });
