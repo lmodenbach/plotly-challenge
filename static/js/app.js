@@ -59,7 +59,7 @@ d3.json("./static/data/samples.json").then((importedData) => {
 
 
 
-    //render graphics calls
+    //render bar chart
     otuIDs[selectIndex] = otuIDs[selectIndex].slice(0, 10);
     sampleValues[selectIndex] = sampleValues[selectIndex].slice(0, 10);
     otuLabels[selectIndex] = otuLabels[selectIndex].slice(0, 10);
@@ -86,6 +86,8 @@ d3.json("./static/data/samples.json").then((importedData) => {
 
     Plotly.newPlot("bar", barData, barLayout);
 
+
+    //render bubble chart
     otuIDs[selectIndex] = otuIDs[selectIndex].reverse();
     sampleValues[selectIndex] = sampleValues[selectIndex].reverse(); 
     otuLabels[selectIndex] = otuLabels[selectIndex].reverse();
@@ -100,7 +102,7 @@ d3.json("./static/data/samples.json").then((importedData) => {
       marker: {
         color: ['rgba(58, 225, 49, 0.64)', 'rgba(109, 243, 36, 1)', 'rgba(233, 243, 36, 1)', 'rgba(236, 137, 8, 1)', 
                 'rgba(244, 45, 10, 1)', 'rgba(244, 10, 209, 1)', 'rgba(136, 7, 206, 1)', 'rgba(27, 7, 206, 1)', 
-                'rgba(51, 216, 228, 1)', 'rgb(22, 130, 121, 1)'],
+                'rgba(51, 216, 228, 1)', 'rgba(22, 130, 121, 1)'],
         size: sampleValues[selectIndex]
       }
     };
@@ -118,6 +120,41 @@ d3.json("./static/data/samples.json").then((importedData) => {
 
     Plotly.newPlot('bubble', bubbleData, bubbleLayout);
 
+    //render gauge chart
+    var gaugeData = [
+      {
+        type: "indicator",
+        mode: "gauge+number+delta",
+        value: wfrequencies[selectIndex],
+        title: { text: "Navel Wash Frequency Per Week", font: { size: 15 } },
+        gauge: {
+          axis: { range: [null, 9] },
+          bar: { color: "rgba(174, 202, 176, 0.79)" },
+          bgcolor: "rgba(207, 246, 209, 0.79)",
+          borderwidth: 2,
+          bordercolor: "black",
+          steps: [
+            { range: [0, 1], color: "rgba(22, 130, 121, 1)" },
+            { range: [1, 2], color: "rgba(51, 216, 228, 1)" },
+            { range: [2, 3], color: "rgba(27, 7, 206, 1)" },
+            { range: [3, 4], color: "rgba(136, 7, 206, 1)" },
+            { range: [4, 5], color: "rgba(244, 10, 209, 1)" },
+            { range: [5, 6], color: "rgba(244, 45, 10, 1)" },
+            { range: [6, 7], color: "rgba(236, 137, 8, 1)" },
+            { range: [7, 8], color: "rgba(233, 243, 36, 1)" },
+            { range: [8, 9], color: "rgba(109, 243, 36, 1)" }
+          ],
+        }
+      }
+    ];
+    
+    var gaugeLayout = {
+      margin: { t: 25, r: 25, l: 25, b: 25 },
+      paper_bgcolor: "rgba(167, 204, 167, 0.5)",
+      font: { color: "black", family: "Arial" }
+    };
+    
+    Plotly.newPlot('gauge', gaugeData, gaugeLayout);
 
   }
 
