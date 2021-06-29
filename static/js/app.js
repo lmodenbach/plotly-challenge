@@ -129,7 +129,7 @@ d3.json("./static/data/samples.json").then((importedData) => {
         gauge: {
           axis: { range: [0, 9], tick0: 0, dtick: 1 },
           bar: { color: "rgba(174, 202, 176, 0.79)" },
-          bgcolor: "rgba(207, 246, 209, 0.79)",
+          bgcolor: "rgba(207, 246, 209, 1)",
           borderwidth: 2,
           bordercolor: "rgba(49, 92, 52, 0.79)",
           steps: [
@@ -149,7 +149,7 @@ d3.json("./static/data/samples.json").then((importedData) => {
     
     var gaugeLayout = {
       margin: { t: 25, r: 25, l: 25, b: 25 },
-      paper_bgcolor: "rgba(167, 204, 167, 0.5)",
+      paper_bgcolor: "rgba(167, 204, 167, 0.9)",
       font: { color: "rgba(49, 92, 52, 0.79)", family: "Arial" }
     };
     
