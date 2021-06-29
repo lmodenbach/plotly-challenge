@@ -124,11 +124,11 @@ d3.json("./static/data/samples.json").then((importedData) => {
     var gaugeData = [
       {
         type: "indicator",
-        mode: "gauge+number+delta",
+        mode: "gauge+number",
         value: wfrequencies[selectIndex],
         title: { text: "Navel Wash Frequency Per Week", font: { size: 15 } },
         gauge: {
-          axis: { range: [null, 9] },
+          axis: { range: [0, 9], tick0: 0, dtick: 1 },
           bar: { color: "rgba(174, 202, 176, 0.79)" },
           bgcolor: "rgba(207, 246, 209, 0.79)",
           borderwidth: 2,
