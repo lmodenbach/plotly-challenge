@@ -60,16 +60,16 @@ d3.json("./static/data/samples.json").then((importedData) => {
 
 
     //render bar chart
-    otuIDs[selectIndex] = otuIDs[selectIndex].slice(0, 10);
-    sampleValues[selectIndex] = sampleValues[selectIndex].slice(0, 10);
-    otuLabels[selectIndex] = otuLabels[selectIndex].slice(0, 10);
+    Top10otuIDs = otuIDs[selectIndex].slice(0, 10);
+    Top10sampleValues = sampleValues[selectIndex].slice(0, 10);
+    Top10otuLabels = otuLabels[selectIndex].slice(0, 10);
 
-    otuIDs[selectIndex] = otuIDs[selectIndex].map(d => "OTU" + String(d));
+    Top10otuIDs = Top10otuIDs.map(d => "OTU" + String(d));
 
     var barTrace = {
-      y: otuIDs[selectIndex],
-      x: sampleValues[selectIndex],
-      text: otuLabels[selectIndex],
+      y: Top10otuIDs,
+      x: Top10sampleValues,
+      text: Top10otuLabels,
       type: "bar",
       orientation: 'h',
       marker: { color: "rgba(173, 244, 92, 0.69)" }
