@@ -79,9 +79,9 @@ d3.json("./static/data/samples.json").then((importedData) => {
     var barData = [barTrace];
 
     var barLayout = {
-      title: "Navel BioDiversity Top 10 OTUs",
-      xaxis: {title: "OTU ID"},
-      yaxis: {title: "Number of OTUs Present"}
+      title: "Navel BioDiversity Top 10 Bacteria Cultures",
+      yaxis: {title: "Operational Taxonomical Unit ID"},
+      xaxis: {title: "Number of Bacteria Cultures Present"}
     };
 
     Plotly.newPlot("bar", barData, barLayout);
@@ -110,12 +110,12 @@ d3.json("./static/data/samples.json").then((importedData) => {
     var bubbleData = [bubbleTrace];
 
     var bubbleLayout = {
-      title: "Navel BioDiversity Top 10 OTUs",
+      title: "Navel BioDiversity Top 10 Bacteria Cultures",
       showlegend: false,
       height: 600,
       width: 1000,
-      xaxis: {title: "OTU ID"},
-      yaxis: {title: "Number of OTUs Present"}  
+      xaxis: {title: "Operational Taxonomical Unit ID"},
+      yaxis: {title: "Number of Bacteria Cultures Present"}  
     };
 
     Plotly.newPlot('bubble', bubbleData, bubbleLayout);
