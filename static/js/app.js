@@ -79,7 +79,7 @@ d3.json("./static/data/samples.json").then((importedData) => {
 
     var barLayout = {
       title: "Navel BioDiversity Top 10 Bacteria Cultures",
-      yaxis: {title: "Operational Taxonomical Unit ID"},
+      yaxis: {title: "Operational Taxonomic Unit ID"},
       xaxis: {title: "Number of Bacteria Cultures Present"}
     };
 
@@ -113,7 +113,7 @@ d3.json("./static/data/samples.json").then((importedData) => {
       showlegend: false,
       height: 600,
       width: 1000,
-      xaxis: {title: "Operational Taxonomical Unit ID"},
+      xaxis: {title: "Operational Taxonomic Unit ID"},
       yaxis: {title: "Number of Bacteria Cultures Present"}  
     };
 
