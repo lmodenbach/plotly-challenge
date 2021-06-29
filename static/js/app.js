@@ -70,7 +70,6 @@ d3.json("./static/data/samples.json").then((importedData) => {
       y: otuIDs[selectIndex],
       x: sampleValues[selectIndex],
       text: otuLabels[selectIndex],
-      name: "Top10OTUs",
       type: "bar",
       orientation: 'h',
       marker: { color: "rgba(173, 244, 92, 0.69)" }
