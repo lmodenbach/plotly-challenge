@@ -90,8 +90,12 @@ d3.json("./static/data/samples.json").then((importedData) => {
     otuIDs[selectIndex] = otuIDs[selectIndex].reverse();
     sampleValues[selectIndex] = sampleValues[selectIndex].reverse(); 
     otuLabels[selectIndex] = otuLabels[selectIndex].reverse();
+    colorList = [];
 
-    console.log(otuLabels[selectIndex]);
+    for (var i = 0; i < sampleValues[selectIndex].length; i++) {
+      colorList.push("rgb(" + String(Math.floor(Math.random() * 255) + 1) + "," + String(Math.floor(Math.random() * 255) + 1) + ","
+                       + String(Math.floor(Math.random() * 255) + 1) + ")");
+    }
 
     var bubbleTrace = {
       x: otuIDs[selectIndex],
@@ -99,9 +103,7 @@ d3.json("./static/data/samples.json").then((importedData) => {
       text: otuLabels[selectIndex],
       mode: 'markers',
       marker: {
-        color: ['rgba(58, 225, 49, 0.64)', 'rgba(109, 243, 36, 1)', 'rgba(233, 243, 36, 1)', 'rgba(236, 137, 8, 1)', 
-                'rgba(244, 45, 10, 1)', 'rgba(244, 10, 209, 1)', 'rgba(136, 7, 206, 1)', 'rgba(27, 7, 206, 1)', 
-                'rgba(51, 216, 228, 1)', 'rgba(22, 130, 121, 1)'],
+        color: colorList,
         size: sampleValues[selectIndex]
       }
     };
@@ -109,7 +111,7 @@ d3.json("./static/data/samples.json").then((importedData) => {
     var bubbleData = [bubbleTrace];
 
     var bubbleLayout = {
-      title: "Navel BioDiversity Top 10 Bacteria Cultures",
+      title: "Navel BioDiversity Bacteria Cultures",
       showlegend: false,
       height: 600,
       width: 1000,
