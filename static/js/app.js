@@ -25,20 +25,29 @@ d3.json("./static/data/samples.json").then((importedData) => {
       return id;
     });
 
+  //call function to filter data to initialize the page
   filterViz();
+
+  //create listener for changes to dropdown menu, connect to filter function
   var dropdownMenu = d3.selectAll("#dropdown");
   dropdownMenu.on("change", filterViz);
 
+  //filter function
   function filterViz() {
+
+    //if accessed due to change prevent default reload behavior, if initializing skip
     if (d3.event != null) {
       d3.event.preventDefault();
     }
+
+    //get user selection from dropdown, extract index number from array of IDs
     userSelect = d3.select('#dropdown option:checked').text();
     for (var i = 0; i < participant_ids.length; i++) {
       if (parseInt(userSelect) === parseInt(participant_ids[i]))
         var selectIndex = i;
     }
 
+    //write to panel, retrieving needed data from arrays using index
     d3.select("#sample-metadata")
       .selectAll("p")
       .remove();
@@ -60,18 +69,22 @@ d3.json("./static/data/samples.json").then((importedData) => {
 
 
     //render bar chart
+
+    //slice out top 10 OTUs info
     Top10otuIDs = otuIDs[selectIndex].slice(0, 10);
     Top10sampleValues = sampleValues[selectIndex].slice(0, 10);
     Top10otuLabels = otuLabels[selectIndex].slice(0, 10);
 
+    //create ID labels with OTU preceding ID
     Top10otuIDs = Top10otuIDs.map(d => "OTU" + String(d));
 
+    //create trace/data and layout for horizontal bar chart per specs
     var barTrace = {
       y: Top10otuIDs,
       x: Top10sampleValues,
       text: Top10otuLabels,
       type: "bar",
-      orientation: 'h',
+      orientation: "h",
       marker: { color: "rgba(173, 244, 92, 0.69)" }
     };
 
@@ -83,27 +96,37 @@ d3.json("./static/data/samples.json").then((importedData) => {
       xaxis: {title: "Number of Bacteria Cultures Present"}
     };
 
+    //plot to bar tag id
     Plotly.newPlot("bar", barData, barLayout);
 
 
     //render bubble chart
-    otuIDs[selectIndex] = otuIDs[selectIndex].reverse();
-    sampleValues[selectIndex] = sampleValues[selectIndex].reverse(); 
-    otuLabels[selectIndex] = otuLabels[selectIndex].reverse();
-    colorList = [];
+    
+    //attach OTU label to IDs
+    otuIDs[selectIndex] = otuIDs[selectIndex].map(d => "OTU" + String(d));
 
+    //empty array to hold variable length list of random colors
+    colorArray = [];
+
+    //populate array
     for (var i = 0; i < sampleValues[selectIndex].length; i++) {
-      colorList.push("rgb(" + String(Math.floor(Math.random() * 255) + 1) + "," + String(Math.floor(Math.random() * 255) + 1) + ","
+      colorArray.push("rgb(" + String(Math.floor(Math.random() * 255) + 1) + "," + String(Math.floor(Math.random() * 255) + 1) + ","
                        + String(Math.floor(Math.random() * 255) + 1) + ")");
     }
 
+    //reverse order of magnitude to ascending right
+    otuIDs[selectIndex] = otuIDs[selectIndex].reverse();
+    sampleValues[selectIndex] = sampleValues[selectIndex].reverse(); 
+    otuLabels[selectIndex] = otuLabels[selectIndex].reverse();
+
+    //create trace/data and layout for bubble chart per specs
     var bubbleTrace = {
       x: otuIDs[selectIndex],
       y: sampleValues[selectIndex],
       text: otuLabels[selectIndex],
       mode: 'markers',
       marker: {
-        color: colorList,
+        color: colorArray,
         size: sampleValues[selectIndex]
       }
     };
@@ -119,9 +142,13 @@ d3.json("./static/data/samples.json").then((importedData) => {
       yaxis: {title: "Number of Bacteria Cultures Present"}  
     };
 
+    //plot to bubble tag id
     Plotly.newPlot('bubble', bubbleData, bubbleLayout);
 
+
     //render gauge chart
+
+    //create trace/data and layout per specs, with added flair in color scale
     var gaugeData = [
       {
         type: "indicator",
@@ -155,6 +182,7 @@ d3.json("./static/data/samples.json").then((importedData) => {
       font: { color: "rgba(49, 92, 52, 0.79)", family: "Arial" }
     };
     
+    //plot to gauge tag id
     Plotly.newPlot('gauge', gaugeData, gaugeLayout);
 
   }
