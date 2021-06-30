@@ -1,7 +1,7 @@
 html body .jumbotron {
     background-color: rgba(167, 204, 167, 0.97);
     color: green;
-    width: 750px;
+    width:fit-content;
 }
 
 html body {
