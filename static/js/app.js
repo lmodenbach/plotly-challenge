@@ -91,7 +91,7 @@ d3.json("./static/data/samples.json").then((importedData) => {
     var barData = [barTrace];
 
     var barLayout = {
-      title: "Navel BioDiversity Top 10 Bacteria Cultures",
+      title: "Navel Biodiversity Top 10 Bacteria Cultures",
       yaxis: {title: "Operational Taxonomic Unit ID"},
       xaxis: {title: "Number of Bacteria Cultures Present"}
     };
@@ -134,7 +134,7 @@ d3.json("./static/data/samples.json").then((importedData) => {
     var bubbleData = [bubbleTrace];
 
     var bubbleLayout = {
-      title: "Navel BioDiversity Bacteria Cultures",
+      title: "Navel Biodiversity Bacteria Cultures",
       showlegend: false,
       height: 600,
       width: 1000,
